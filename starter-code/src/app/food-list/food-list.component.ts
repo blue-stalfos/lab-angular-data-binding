@@ -10,6 +10,10 @@ export class FoodListComponent implements OnInit {
 	foodList: Array<any> = [];
 	newFood: any = {name: "", calories: "", image: ""};
 	isFormShowing: boolean = false;
+	todaysFoods: Array<any> = [];
+	todaysCalories: number = 0;
+	resultsArray: Array<any> = [];
+	searchTerm: String = "";
 
 	constructor() { }
 
@@ -24,11 +28,23 @@ export class FoodListComponent implements OnInit {
 		this.isFormShowing = false;
 	}
 
+	addToList(theFood) {
+		this.todaysFoods.push(theFood);
+		this.todaysCalories += Number(theFood.calories);
+	}
+
+	filterFoods() { 
+		this.resultsArray = this.foodList.filter((food => {
+			return food.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+		}))
+	}
+
 	toggleForm() {
 		this.isFormShowing = !this.isFormShowing;
 	}
 
 	ngOnInit() {
 		this.foodList = foods;
+		this.resultsArray = this.foodList;
 	}
 }

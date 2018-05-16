@@ -1,3 +1,11 @@
 img {
 	width: 350px;
 }
+
+.food-list-div {
+	float: left;
+}
+
+.todays-foods {
+	float: right;
+}
